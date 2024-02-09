@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -18,15 +19,15 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private long flightNumber;
-    private Duration duration;
-    @OneToMany
-    @JoinColumn(name = "flight_id")
-    private List<Seat> seats;
+    private Integer duration;
     private String airline;
     @OneToOne
-    private FlightSegment arrival;
+    private Airport arrival;
     @OneToOne
-    private FlightSegment departure;
+    private Airport departure;
+    private Date arrivalTime;
+    private Date departureTime;
     private long fare;
+    private long seatCapacity;
 
 }

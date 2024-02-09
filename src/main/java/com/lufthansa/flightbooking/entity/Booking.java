@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Data
@@ -25,9 +26,12 @@ public class Booking {
 
     @OneToOne
     @JoinColumn(name = "arrival_id")
-    private FlightSegment arrival;
+    private Airport arrival;
 
     @OneToOne
     @JoinColumn(name = "departure_id")
-    private FlightSegment departure;
+    private Airport departure;
+
+    private Date arrivalTime;
+    private Date departureTime;
 }
