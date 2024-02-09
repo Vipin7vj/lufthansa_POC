@@ -25,6 +25,16 @@ public class Booking {
     private Flight flight;
 
 
+    private String travellerName;
+
+    public String getTravellerName() {
+        return travellerName;
+    }
+
+    public void setTravellerName(String travellerName) {
+        this.travellerName = travellerName;
+    }
+
     public Long getId() {
         return id;
     }

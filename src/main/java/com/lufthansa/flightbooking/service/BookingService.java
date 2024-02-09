@@ -7,6 +7,7 @@ import com.lufthansa.flightbooking.entity.User;
 import com.lufthansa.flightbooking.mapper.FlightMapper;
 import com.lufthansa.flightbooking.mapper.UserMapper;
 import com.lufthansa.flightbooking.repository.BookingRepository;
+import com.lufthansa.flightbooking.repository.FlightRepository;
 import com.lufthansa.flightbooking.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,16 +22,26 @@ public class BookingService {
     @Autowired
     private BookingRepository bookingRepository;
 
+    @Autowired
+    private FlightRepository flightRepository;
+
     @Transactional
     public void saveBooking(BookingRequest bookingRequest) {
         User userEntity = UserMapper.INSTANCE.dtoToEntity(bookingRequest.getUser());
-        Flight flight = FlightMapper.INSTANCE.dtoToEntity(bookingRequest.getFlightRequest());
-        User user = userRepository.saveIfNotExists(userEntity);
-        flight.setSeatCapacity(flight.getSeatCapacity()-bookingRequest.getNoOfTraveller());
-        Booking booking = new Booking();
-        booking.setFlight(flight);
-        booking.setUser(user);
-        bookingRepository.save(booking);
+        //   User user = userRepository.saveIfNotExists(userEntity);
+        Long currentSeatCapacity = flightRepository.getSeatCapacityByFlightId(bookingRequest.getFlightId());
+        flightRepository.reduceSeatCapacityById(bookingRequest.getFlightId(), currentSeatCapacity - bookingRequest.getTravellers().size());
+
+        Flight flight = new Flight();
+        flight.setId(bookingRequest.getFlightId());
+
+        bookingRequest.getTravellers().forEach(traveller -> {
+            Booking booking = new Booking();
+            booking.setFlight(flight);
+            booking.setUser(userEntity);
+            booking.setTravellerName(traveller);
+            bookingRepository.save(booking);
+        });
 
     }
 }

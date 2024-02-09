@@ -2,6 +2,7 @@ package com.lufthansa.flightbooking.repository;
 
 import com.lufthansa.flightbooking.entity.Flight;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -17,4 +18,11 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
             @Param("arrivalId") Long arrivalId,
             @Param("departureDate") String departureDate
     );
+
+    @Modifying
+    @Query("UPDATE Flight f SET f.seatCapacity = :reducedSeat WHERE f.id = :flightId")
+    void reduceSeatCapacityById(@Param("flightId") long flightId, @Param("reducedSeat") long reducedSeat);
+
+    @Query("SELECT f.seatCapacity FROM Flight f WHERE f.id = :flightId")
+    Long getSeatCapacityByFlightId(@Param("flightId") Long flightId);
 }

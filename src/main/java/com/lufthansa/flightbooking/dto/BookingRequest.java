@@ -1,9 +1,12 @@
 package com.lufthansa.flightbooking.dto;
 
+import java.util.List;
+
 public class BookingRequest {
     private UserRequest user;
-    private FlightRequest flightRequest;
-    private int noOfTraveller;
+    private long flightId;
+    private List<String> travellers;
+
 
     public UserRequest getUser() {
         return user;
@@ -13,19 +16,19 @@ public class BookingRequest {
         this.user = user;
     }
 
-    public FlightRequest getFlightRequest() {
-        return flightRequest;
+    public long getFlightId() {
+        return flightId;
     }
 
-    public void setFlightRequest(FlightRequest flightRequest) {
-        this.flightRequest = flightRequest;
+    public void setFlightId(long flightId) {
+        this.flightId = flightId;
     }
 
-    public int getNoOfTraveller() {
-        return noOfTraveller;
+    public List<String> getTravellers() {
+        return travellers;
     }
 
-    public void setNoOfTraveller(int noOfTraveller) {
-        this.noOfTraveller = noOfTraveller;
+    public void setTravellers(List<String> travellers) {
+        this.travellers = travellers;
     }
 }
