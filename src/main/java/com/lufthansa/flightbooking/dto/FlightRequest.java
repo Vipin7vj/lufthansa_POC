@@ -1,35 +1,23 @@
-package com.lufthansa.flightbooking.entity;
+package com.lufthansa.flightbooking.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.lufthansa.flightbooking.entity.Airline;
+import com.lufthansa.flightbooking.entity.Airport;
 
-import javax.persistence.*;
-import java.time.Duration;
+import javax.persistence.OneToOne;
 import java.util.Date;
-import java.util.List;
 
-@Entity
-//@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Flight {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class FlightRequest {
     private long id;
     private long flightNumber;
     private Integer duration;
-    @OneToOne
     private Airline airline;
-    @OneToOne
     private Airport arrival;
-    @OneToOne
     private Airport departure;
     private Date arrivalTime;
     private Date departureTime;
     private long fare;
     private long seatCapacity;
+
 
     public long getId() {
         return id;

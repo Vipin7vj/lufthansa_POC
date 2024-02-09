@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Data
+//@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Booking {
@@ -24,14 +24,28 @@ public class Booking {
     @JoinColumn(name = "flight_id")
     private Flight flight;
 
-    @OneToOne
-    @JoinColumn(name = "arrival_id")
-    private Airport arrival;
 
-    @OneToOne
-    @JoinColumn(name = "departure_id")
-    private Airport departure;
+    public Long getId() {
+        return id;
+    }
 
-    private Date arrivalTime;
-    private Date departureTime;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Flight getFlight() {
+        return flight;
+    }
+
+    public void setFlight(Flight flight) {
+        this.flight = flight;
+    }
 }
