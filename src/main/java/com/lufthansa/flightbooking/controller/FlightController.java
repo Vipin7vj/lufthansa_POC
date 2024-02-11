@@ -52,12 +52,15 @@ public class FlightController {
             @RequestParam("arrivalId") Long arrivalAirportId,
 
             @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "Invalid date format. Use yyyy-MM-dd")
-            @RequestParam("departureDate") String departureDate
+            @RequestParam("departureDate") String departureDate,
+
+            @NotNull(message = "Traveller cannot be null")
+            @RequestParam("noOfTraveller") Long noOfTraveller
     ) {
         logger.info("Received request to search flights with departureId={}, arrivalId={}, departureDate={}", departureAirportId, arrivalAirportId, departureDate);
 
         // Call the flight service to perform the search
-        List<SearchFlightResponse> foundFlights = flightService.searchFlights(departureAirportId, arrivalAirportId, departureDate);
+        List<SearchFlightResponse> foundFlights = flightService.searchFlights(departureAirportId, arrivalAirportId, departureDate,noOfTraveller);
 
         logger.info("Found {} flights for departureId={}, arrivalId={}, departureDate={}", foundFlights.size(), departureAirportId, arrivalAirportId, departureDate);
         // Return the results as a ResponseEntity

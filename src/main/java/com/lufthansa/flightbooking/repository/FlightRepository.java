@@ -12,11 +12,12 @@ import java.util.List;
 @Repository
 public interface FlightRepository extends JpaRepository<Flight, Long> {
 
-    @Query("SELECT f FROM Flight f WHERE f.departure.id = :departureId AND f.arrival.id = :arrivalId AND DATE_FORMAT(f.departureTime, '%Y-%m-%d') = :departureDate")
-    List<Flight> findFlightsByDepartureAndArrivalAndDate(
+    @Query("SELECT f FROM Flight f WHERE f.departure.id = :departureId AND f.arrival.id = :arrivalId AND DATE_FORMAT(f.departureTime, '%Y-%m-%d') = :departureDate AND f.seatCapacity >= :requiredSeats")
+    List<Flight> findFlightsByDepartureAndArrivalAndDateAndCapacity(
             @Param("departureId") Long departureId,
             @Param("arrivalId") Long arrivalId,
-            @Param("departureDate") String departureDate
+            @Param("departureDate") String departureDate,
+            @Param("requiredSeats") Long noOfTraveller
     );
 
     /*@Query("UPDATE Flight f SET f.seatCapacity = :reducedSeat WHERE f.id = :flightId")

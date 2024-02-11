@@ -21,14 +21,14 @@ public class FlightService {
     private FlightRepository flightRepository;
 
 
-    public List<SearchFlightResponse> searchFlights(Long departureAirportId, Long arrivalAirportId, String departureDate) {
+    public List<SearchFlightResponse> searchFlights(Long departureAirportId, Long arrivalAirportId, String departureDate,Long noOfTraveller) {
         logger.info("Searching for flights with departureAirportId={}, arrivalAirportId={}, departureDate={}", departureAirportId, arrivalAirportId, departureDate);
 
-        List<Flight> flights = flightRepository.findFlightsByDepartureAndArrivalAndDate(departureAirportId, arrivalAirportId, departureDate);
+        List<Flight> flights = flightRepository.findFlightsByDepartureAndArrivalAndDateAndCapacity(departureAirportId, arrivalAirportId, departureDate,noOfTraveller);
 
         if (flights.isEmpty()) {
             logger.warn("No flights found for departureAirportId={}, arrivalAirportId={}, departureDate={}", departureAirportId, arrivalAirportId, departureDate);
-            throw new FlightNotFoundException(departureAirportId, arrivalAirportId, departureDate);
+            throw new FlightNotFoundException(departureAirportId, arrivalAirportId, departureDate,noOfTraveller);
         }
 
         List<SearchFlightResponse> flightResponseList = flights.stream()
