@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-//@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Booking {
@@ -26,6 +25,16 @@ public class Booking {
 
 
     private String travellerName;
+
+    private String bookingStatus;
+
+    public String getBooking() {
+        return bookingStatus;
+    }
+
+    public void setBookingStatus(String bookingStatus) {
+        this.bookingStatus = bookingStatus;
+    }
 
     public String getTravellerName() {
         return travellerName;

@@ -29,7 +29,7 @@ public class Flight {
     private Date arrivalTime;
     private Date departureTime;
     private long fare;
-    private long seatCapacity;
+    private Long seatCapacity;
 
     public long getId() {
         return id;
@@ -103,11 +103,11 @@ public class Flight {
         this.fare = fare;
     }
 
-    public long getSeatCapacity() {
+    public Long getSeatCapacity() {
         return seatCapacity;
     }
 
-    public void setSeatCapacity(long seatCapacity) {
+    public void setSeatCapacity(Long seatCapacity) {
         this.seatCapacity = seatCapacity;
     }
 }

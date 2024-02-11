@@ -16,3 +16,14 @@ spring:
   spring:
     jpa:
       show-sql: true
+
+
+# Logging Configuration
+logging:
+  level:
+    root: info
+    com:
+      lufthansa:
+        flightbooking:
+          controller: debug
+          service: info

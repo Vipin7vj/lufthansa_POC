@@ -1,13 +1,26 @@
 package com.lufthansa.flightbooking.dto;
 
+
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 import java.util.List;
 
 public class BookingRequest {
+
+    @NotNull(message = "User information cannot be null")
+    @Valid
     private UserRequest user;
-    private long flightId;
-    private List<String> travellers;
 
+    @NotNull(message = "Flight ID cannot be null")
+    @Max(10)
+    private Long flightId;
 
+    @NotEmpty(message = "Travellers list cannot be empty")
+    @Size(min = 1, message = "At least one traveler must be specified")
+    private List<@NotBlank(message = "Traveller name cannot be blank")
+    @Size(max = 50, message = "Traveller name must not exceed 50 characters") String> travellers;
+
+    // Getters and setters
     public UserRequest getUser() {
         return user;
     }
@@ -16,11 +29,11 @@ public class BookingRequest {
         this.user = user;
     }
 
-    public long getFlightId() {
+    public Long getFlightId() {
         return flightId;
     }
 
-    public void setFlightId(long flightId) {
+    public void setFlightId(Long flightId) {
         this.flightId = flightId;
     }
 
