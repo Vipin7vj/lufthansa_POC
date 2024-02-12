@@ -50,6 +50,3 @@ This repository contains the source code for a Flight Booking System, providing 
 11. JavaDocs
 12. JUnit Testing
 
----
-
-Feel free to customize and expand upon this template based on your specific requirements and details about your project.
