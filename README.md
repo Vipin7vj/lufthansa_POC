@@ -6,7 +6,7 @@
    - The database is automatically created with data insertion. Upon running the application after Maven install, the tables created and populated will be displayed.
 
 2. **Authentication:**
-   Once the application is started, access the Swagger UI using the URL: [Swagger UI](http://localhost:8080/swagger-ui/index.html/)
+   Once the application is started, access the Swagger UI using the URL: [Swagger UI](http://localhost:8080/swagger-ui/index.html#/)
 
    As security has been implemented, obtain the token by hitting the token URL in the token controller. Get the access token with Bearer.
 
