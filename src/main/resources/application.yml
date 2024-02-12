@@ -6,6 +6,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
+    defer-datasource-initialization: true
     hibernate:
       ddl-auto: update
     show-sql: true
@@ -13,11 +14,15 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
 
-  spring:
-    jpa:
-      show-sql: true
+  sql:
+    init:
+      mode: always
 
-
+okta:
+  oauth2:
+    issuer: https://dev-25860839.okta.com/oauth2/default
+    client-id: 0oaf2ux87cPBoMgGW5d7
+    client-secret: eVtnCy4ucG6GCdbW6BsH8rzExNV0bCFCDEE_szpcSRwef0avtvLgjzilWgmILdEe
 # Logging Configuration
 #logging:
 #  level:

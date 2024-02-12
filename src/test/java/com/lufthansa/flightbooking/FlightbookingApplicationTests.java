@@ -1,4 +1,3 @@
-/*
 package com.lufthansa.flightbooking;
 
 import org.junit.jupiter.api.Test;
@@ -12,4 +11,3 @@ class FlightbookingApplicationTests {
 	}
 
 }
-*/
