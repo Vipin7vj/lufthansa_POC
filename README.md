@@ -1,5 +1,3 @@
-Certainly! Here is a sample README.md file for your Git repository:
-
 ---
 
 # Flight Booking System
