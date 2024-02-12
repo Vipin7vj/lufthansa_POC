@@ -15,35 +15,46 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+/**
+ * Controller class for creating and cancelling the booking.
+ */
 @RestController
 @RequestMapping("v1/booking")
 @Api(value = "Booking API", tags = {"Booking Operations"})
 @Validated
 public class BookingController {
+
     private static final Logger logger = LoggerFactory.getLogger(BookingController.class);
+
     @Autowired
     private BookingService bookingService;
 
+    /**
+     * Endpoint to save a new booking based on the provided request.
+     *
+     * @param bookingRequest The request containing booking details.
+     * @return ResponseEntity with a success message and HTTP status code 201 (Created).
+     */
     @PostMapping("/save")
     @ApiOperation(value = "Save Booking", notes = "Create a new booking based on the provided request")
     public ResponseEntity<String> saveBooking(@Valid @RequestBody BookingRequest bookingRequest) {
         logger.info("Received request to save booking: {}", bookingRequest);
-        // Call the booking service to save the booking request
         bookingService.saveBooking(bookingRequest);
         logger.info("Booking saved successfully");
         return new ResponseEntity<>("Booking saved successfully", HttpStatus.CREATED);
     }
 
-
+    /**
+     * Endpoint to cancel bookings based on the provided booking IDs.
+     *
+     * @param request The request containing booking IDs to be canceled.
+     * @return ResponseEntity with a success message and HTTP status code 200 (OK).
+     */
     @PutMapping("/cancel")
     @ApiOperation(value = "Cancel Bookings", notes = "Cancel bookings based on provided booking IDs")
     public ResponseEntity<String> cancelBookings(@Valid @RequestBody BookingCancellationRequest request) {
-
-        logger.info("Received request to cancel bookings with IDs: {}");
-
-        // Call the booking service to cancel the bookings
+        logger.info("Received request to cancel bookings with IDs: {}", request.getBookingIds());
         bookingService.cancelBookings(request);
-
         logger.info("Bookings canceled successfully");
         return new ResponseEntity<>("Bookings canceled successfully", HttpStatus.OK);
     }

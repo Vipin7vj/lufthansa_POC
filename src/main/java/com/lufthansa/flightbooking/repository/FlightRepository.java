@@ -20,10 +20,6 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
             @Param("requiredSeats") Long noOfTraveller
     );
 
-    /*@Query("UPDATE Flight f SET f.seatCapacity = :reducedSeat WHERE f.id = :flightId")
-    @Modifying
-    void reduceSeatCapacityById(@Param("flightId") long flightId, @Param("reducedSeat") long reducedSeat);*/
-
     @Query("SELECT f.seatCapacity FROM Flight f WHERE f.id = :flightId")
     int getSeatCapacityByFlightId(@Param("flightId") Long flightId);
 

@@ -20,7 +20,6 @@ public class BookingRequest {
     private List<@NotBlank(message = "Traveller name cannot be blank")
     @Size(max = 50, message = "Traveller name must not exceed 50 characters") String> travellers;
 
-    // Getters and setters
     public UserRequest getUser() {
         return user;
     }

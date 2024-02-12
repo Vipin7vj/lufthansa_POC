@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * Controller class for handling user-related operations.
+ */
 @RestController
 @RequestMapping("/v1/user")
 @Api(value = "User API", tags = {"User Operations"})
@@ -27,13 +30,19 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Endpoint to retrieve bookings associated with the specified user ID.
+     *
+     * @param userId The ID of the user for whom bookings are to be retrieved.
+     * @return ResponseEntity with a list of booking responses and HTTP status code.
+     *         - HttpStatus.OK (200) if bookings are found.
+     *         - HttpStatus.NOT_FOUND (404) if no bookings are found.
+     */
     @GetMapping("/{userId}")
     @ApiOperation(value = "Get Bookings by User ID", notes = "Retrieve bookings associated with the specified user ID")
     public ResponseEntity<List<BookingResponse>> getBookingsByUserId(@PathVariable Long userId) {
         logger.info("Received request to get bookings for user with ID: {}", userId);
-
          List<BookingResponse> bookings = userService.getBookingsByUserId(userId);
-
         if (bookings.isEmpty()) {
             logger.warn("No bookings found for user with ID: {}", userId);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

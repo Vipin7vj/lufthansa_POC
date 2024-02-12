@@ -12,7 +12,6 @@ public class BookingResponse {
     private Date arrivalTime;
     private Date departureTime;
 
-
     public String getName() {
         return name;
     }

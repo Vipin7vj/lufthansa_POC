@@ -23,7 +23,6 @@ public class Booking {
     @JoinColumn(name = "flight_id")
     private Flight flight;
 
-
     private String travellerName;
 
     private String bookingStatus;

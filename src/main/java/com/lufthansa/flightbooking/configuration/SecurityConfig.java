@@ -1,5 +1,6 @@
 package com.lufthansa.flightbooking.configuration;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,6 +16,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Value("${okta.oauth2.issuer}")
+    private String oktaIssuer;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -27,19 +31,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/webjars/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-               .oauth2ResourceServer()
+                .oauth2ResourceServer()
                 .jwt()
                 .decoder(jwtDecoder())
-                ;
+        ;
     }
 
     JwtDecoder jwtDecoder() {
-        OAuth2TokenValidator<Jwt> withIssuer = JwtValidators.createDefaultWithIssuer("https://dev-25860839.okta.com/oauth2/default");
-        OAuth2TokenValidator<Jwt> validator = new DelegatingOAuth2TokenValidator<Jwt>( withIssuer);
+        OAuth2TokenValidator<Jwt> withIssuer = JwtValidators.createDefaultWithIssuer(oktaIssuer);
+        OAuth2TokenValidator<Jwt> validator = new DelegatingOAuth2TokenValidator<Jwt>(withIssuer);
 
-        NimbusJwtDecoder jwtDecoder = (NimbusJwtDecoder) JwtDecoders.fromOidcIssuerLocation("https://dev-25860839.okta.com/oauth2/default");
+        NimbusJwtDecoder jwtDecoder = (NimbusJwtDecoder) JwtDecoders.fromOidcIssuerLocation(oktaIssuer);
         jwtDecoder.setJwtValidator(validator);
         return jwtDecoder;
     }
 
-    }
+}

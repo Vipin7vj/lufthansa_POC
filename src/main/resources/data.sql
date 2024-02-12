@@ -52,18 +52,6 @@ INSERT INTO lufthansa.airport (city,country,name) VALUES
 	 ('Lucknow','India','Chaudhary Charan Singh International Airport');
 
 
-INSERT INTO lufthansa.booking (flight_id,user_id,traveller_name,booking_status) VALUES
-	 (1,20,NULL,NULL),
-	 (1,20,NULL,NULL),
-	 (3,4,'John Doe',NULL),
-	 (3,4,'Jane Doe',NULL),
-	 (3,4,'Alice',NULL),
-	 (3,1,'Viyaan','Confirmed'),
-	 (3,1,'Yashi','Confirmed'),
-	 (3,1,'Vipin','Confirmed'),
-	 (3,1,'VArsha','Cancelled'),
-	 (3,1,'Basant','Cancelled');
-
 INSERT INTO lufthansa.`user` (address,contact_no,email_id,gender,name) VALUES
 	 ('456 Park Avenue, Delhi','+91 8765432109','aisha.patel@example.com',1,'Aisha Patel'),
 	 ('789 Oak Lane, Bangalore','+91 7654321098','aditya.singh@example.com',0,'Aditya Singh'),

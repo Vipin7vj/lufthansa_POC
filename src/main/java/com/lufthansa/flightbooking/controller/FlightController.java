@@ -4,6 +4,7 @@ import com.lufthansa.flightbooking.dto.SearchFlightResponse;
 import com.lufthansa.flightbooking.service.FlightService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
- * Controller class for handling flight-related operations.
+ * Controller class for searching flights.
  */
 @RestController
 @RequestMapping("/flights")
@@ -51,6 +52,7 @@ public class FlightController {
             @NotNull(message = "Arrival ID cannot be null")
             @RequestParam("arrivalId") Long arrivalAirportId,
 
+            @ApiParam(value = "The date parameter in the format yyyy-MM-dd", example = "2024-02-10", required = true)
             @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "Invalid date format. Use yyyy-MM-dd")
             @RequestParam("departureDate") String departureDate,
 
@@ -58,12 +60,8 @@ public class FlightController {
             @RequestParam("noOfTraveller") Long noOfTraveller
     ) {
         logger.info("Received request to search flights with departureId={}, arrivalId={}, departureDate={}", departureAirportId, arrivalAirportId, departureDate);
-
-        // Call the flight service to perform the search
-        List<SearchFlightResponse> foundFlights = flightService.searchFlights(departureAirportId, arrivalAirportId, departureDate,noOfTraveller);
-
+        List<SearchFlightResponse> foundFlights = flightService.searchFlights(departureAirportId, arrivalAirportId, departureDate, noOfTraveller);
         logger.info("Found {} flights for departureId={}, arrivalId={}, departureDate={}", foundFlights.size(), departureAirportId, arrivalAirportId, departureDate);
-        // Return the results as a ResponseEntity
         return new ResponseEntity<>(foundFlights, HttpStatus.OK);
     }
 }

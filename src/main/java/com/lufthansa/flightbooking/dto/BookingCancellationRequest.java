@@ -8,7 +8,7 @@ import java.util.List;
 
 public class BookingCancellationRequest {
     @NotEmpty(message = "Booking IDs cannot be empty")
-    @Valid // Ensure that each element in the list is validated (e.g., not null)
+    @Valid
     private List<@NotNull Long> bookingIds;
 
     @NotNull(message = "Flight ID cannot be null")

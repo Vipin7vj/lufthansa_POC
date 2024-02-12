@@ -22,7 +22,9 @@ import java.util.List;
 @Service
 @Transactional
 public class BookingService {
+
     private static final Logger logger = LoggerFactory.getLogger(BookingService.class);
+
     @Autowired
     private UserRepository userRepository;
 
@@ -34,7 +36,6 @@ public class BookingService {
 
     public void saveBooking(BookingRequest bookingRequest) {
         User userEntity = UserMapper.INSTANCE.dtoToEntity(bookingRequest.getUser());
-        // saveUserIfNotExists(userEntity);
 
         Long flightId = bookingRequest.getFlightId();
         long requestedSeats = bookingRequest.getTravellers().size();
@@ -50,10 +51,6 @@ public class BookingService {
             bookingRepository.save(booking);
         });
         logger.info("Booking process completed successfully");
-    }
-
-    private void saveUserIfNotExists(User userEntity) {
-        userRepository.saveIfNotExists(userEntity);
     }
 
     private long updateSeatCapacity(Long flightId, Long requestedSeats) {

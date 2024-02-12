@@ -2,11 +2,16 @@ package com.lufthansa.flightbooking.dto;
 
 import com.lufthansa.flightbooking.enums.Gender;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 public class UserRequest {
     private long id;
     private String name;
     private String address;
     private String emailId;
+
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     private String contactNo;
 
