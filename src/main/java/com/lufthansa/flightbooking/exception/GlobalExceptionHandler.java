@@ -94,4 +94,9 @@ public class GlobalExceptionHandler {
         logger.error("Global exception: {}", ex.getMessage());
         return new ResponseEntity<>("An unexpected error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(BookingNotFoundException.class)
+    public ResponseEntity<String> handleBookingNotFoundException(BookingNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
 }

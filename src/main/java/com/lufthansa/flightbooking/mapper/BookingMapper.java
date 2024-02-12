@@ -20,6 +20,7 @@ public interface BookingMapper {
     @Mapping(target = "fare", source = "flight.fare")
     @Mapping(target = "arrivalTime", source = "flight.arrivalTime")
     @Mapping(target = "departureTime", source = "flight.departureTime")
+    @Mapping(target = "bookingStatus", source = "bookingStatus")
     BookingResponse bookingToBookingResponse(Booking booking);
 
 }

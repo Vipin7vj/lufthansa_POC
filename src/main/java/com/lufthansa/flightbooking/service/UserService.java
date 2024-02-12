@@ -2,6 +2,7 @@ package com.lufthansa.flightbooking.service;
 
 import com.lufthansa.flightbooking.dto.BookingResponse;
 import com.lufthansa.flightbooking.entity.Booking;
+import com.lufthansa.flightbooking.exception.BookingNotFoundException;
 import com.lufthansa.flightbooking.mapper.BookingMapper;
 import com.lufthansa.flightbooking.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,10 @@ public class UserService {
     public List<BookingResponse> getBookingsByUserId(Long userId) {
         List<Booking> bookings =  bookingRepository.findByUserId(userId);
         List<BookingResponse> response = new ArrayList<>();
+
+        if (bookings.isEmpty()) {
+            throw new BookingNotFoundException(userId);
+        }
 
         bookings.forEach(b->{
             BookingResponse bookingResponse = BookingMapper.INSTANCE.bookingToBookingResponse(b);

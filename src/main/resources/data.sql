@@ -63,4 +63,3 @@ INSERT INTO lufthansa.`user` (address,contact_no,email_id,gender,name) VALUES
 	 ('606 Walnut Lane, Jaipur','+91 1098765432','advait.trivedi@example.com',0,'Advait Trivedi'),
 	 ('707 Pineapple Road, Lucknow','+91 0987654321','anika.mehta@example.com',1,'Anika Mehta'),
 	 ('123 Main St, City','1234567890','john.doe@example.com',0,'John Doe');
-

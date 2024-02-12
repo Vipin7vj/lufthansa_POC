@@ -27,7 +27,7 @@ public class Booking {
 
     private String bookingStatus;
 
-    public String getBooking() {
+    public String getBookingStatus() {
         return bookingStatus;
     }
 

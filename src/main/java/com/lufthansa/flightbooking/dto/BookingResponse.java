@@ -12,6 +12,16 @@ public class BookingResponse {
     private Date arrivalTime;
     private Date departureTime;
 
+    private String bookingStatus;
+
+    public String getBookingStatus() {
+        return bookingStatus;
+    }
+
+    public void setBookingStatus(String bookingStatus) {
+        this.bookingStatus = bookingStatus;
+    }
+
     public String getName() {
         return name;
     }

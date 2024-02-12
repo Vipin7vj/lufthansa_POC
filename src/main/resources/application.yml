@@ -23,12 +23,3 @@ okta:
     issuer: https://dev-25860839.okta.com/oauth2/default
     client-id: 0oaf2ux87cPBoMgGW5d7
     client-secret: eVtnCy4ucG6GCdbW6BsH8rzExNV0bCFCDEE_szpcSRwef0avtvLgjzilWgmILdEe
-# Logging Configuration
-#logging:
-#  level:
-#    root: info
-#    com:
-#      lufthansa:
-#        flightbooking:
-#          controller: debug
-#          service: info
