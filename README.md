@@ -4,6 +4,7 @@
 
 1. **Database Setup:**
    - The database is automatically created with data insertion. Upon running the application after Maven install, the tables created and populated will be displayed.
+   - Please comment data.sql after running once as it will create duplicate record in table.
 
 2. **Authentication:**
    Once the application is started, access the Swagger UI using the URL: [Swagger UI](http://localhost:8080/swagger-ui/index.html#/)
@@ -13,8 +14,9 @@
    Copy this token with Bearer. Click on "Authorize" and paste the token.
 
    After that, you will be able to access the other endpoints.
+   
 
-3. **Mapstruct Usage:**
+4. **Mapstruct Usage:**
    - Mapstruct, working at compile time, is used for DTO to entity and vice versa. Execute `mvn install` to check if mapper implementations are created in the target folder for mapping between entity and DTO.
 
 ## Flight Booking System
